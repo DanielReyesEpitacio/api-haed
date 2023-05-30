@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('haed-info');
-});
+
+Route::get("/",[HomeController::Class,"info"]);
+Route::get("/endpoint/{endpoint}",[HomeController::class,"endpoint"])->name("endpoint");
