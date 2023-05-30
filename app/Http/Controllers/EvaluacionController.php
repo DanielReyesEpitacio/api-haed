@@ -17,7 +17,7 @@ class EvaluacionController extends Controller
 
     //devuelve la evaluacion con el id especificado y todas sus preguntas y feedbacks
     public function evaluacion($id){
-        $evaluacion = Evaluacion::with('preguntas.opciones')->find(1);
+        $evaluacion = Evaluacion::with('preguntas.opciones.feedback')->find($id);
         return response()->json($evaluacion,Response::HTTP_OK);
     }
 
