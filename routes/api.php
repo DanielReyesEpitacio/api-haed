@@ -17,14 +17,10 @@ use App\Http\Controllers\FeedbackController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('evaluaciones',[EvaluacionController::class,'index']);
 Route::get('evaluaciones/{id}/all',[EvaluacionController::class,'evaluacion']);
 Route::get('evaluaciones/{id}',[EvaluacionController::class,'show']);
-Route::get('evaluacione/{id}',[EvaluacionController::class,'test']);
 Route::post('evaluaciones',[EvaluacionController::class,'store']);
 
 Route::get('feedbacks',[FeedbackController::class,'index']);
@@ -32,10 +28,10 @@ Route::get('feedbacks/{id}',[FeedbackController::class,'show']);
 Route::get('feedbacks/opcion/{opcionId}',[FeedbackController::class,'getFeedback']); 
 Route::post('feedbacks/opcion/all',[FeedbackController::class,'getFeedbacks']); //Recibe un conjunto de id de opciones {id_opciones:[1,2,3]}
 
-Route::post("register",[AuthController::class,"register"]);
-Route::post("login",[AuthController::class,"login"]);
+Route::post("auth/register",[AuthController::class,"register"]);
+Route::post("auth/login",[AuthController::class,"login"]);
 Route::group(['middleware'=>["auth:sanctum"]],function(){
     Route::get("user-profile",[AuthController::class,"userProfile"]);
-    Route::get("logout",[AuthController::class,"logout"]);
+    Route::get("auth/logout",[AuthController::class,"logout"]);
     
 });

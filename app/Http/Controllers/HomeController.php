@@ -9,11 +9,13 @@ class HomeController extends Controller
 {
     public function info(){
         $routes = Route::getRoutes();
-
         $apiRoutes = [];
         foreach ($routes as $route) {
             if (str_contains($route->uri, 'api/')) {
-                $apiRoutes[] = $route->uri;
+                $apiRoutes[] = [
+                    'uri' => $route->uri,
+                    'methods' => $route->methods,
+                ];
             }
         }
 
