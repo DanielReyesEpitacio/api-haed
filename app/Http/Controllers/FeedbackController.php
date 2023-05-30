@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Feedback;
+use Symfony\Component\HttpFoundation\Response;
 
 class FeedbackController extends Controller
 {
@@ -13,7 +15,8 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $feedbacks = Feedback::all();
+        return response()->json($feedbacks,Response::HTTP_OK);
     }
 
     /**
@@ -35,7 +38,8 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        //
+        $feedback = Feedback::find($id);
+        return response()->json($feedback,Response::HTTP_OK);
     }
 
     /**
@@ -59,5 +63,27 @@ class FeedbackController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getFeedback($opcionId){
+        $feedback = Feedback::where('opcion_id',$opcionId)->first();
+
+            return response()->json($feedback,Response::HTTP_OK);
+
+    }
+
+    public function getFeedbacks(Request $request){
+
+        $request->validate([
+            "opciones"=>"required|array",
+            "opciones.*"=>"integer"
+        ]);
+
+        $options = $request->input("opciones");
+
+        $feedbacks = Feedback::whereIn('opcion_id',$options)->get();
+
+        return response()->json($feedbacks,Response::HTTP_OK);
+
     }
 }
