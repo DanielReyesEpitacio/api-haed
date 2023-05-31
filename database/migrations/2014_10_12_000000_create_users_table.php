@@ -14,14 +14,15 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedInteger('id')->primary();
+            $table->unsignedInteger('rol_id');
+            $table->foreing('rol_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('nombres');
             $table->string('apelldidos');
             $table->string('matricula')->unique();
             $table->string('email')->unique();
             $table->string('centro_trabajo')->default('UNIVERSIDAD TECNOLÓGICA DE PUEBLA');
             $table->string('password');
-            $table->boolean('administrador')->default(false);
             $table->string('sexo')->nullable();
             $table->integer('edad')->nullable();
             $table->rememberToken();
