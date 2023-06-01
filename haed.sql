@@ -227,7 +227,7 @@ CREATE TABLE `preguntas` (
 
 LOCK TABLES `preguntas` WRITE;
 /*!40000 ALTER TABLE `preguntas` DISABLE KEYS */;
-INSERT INTO `preguntas` VALUES (1,1,'Pregunta 1'),(2,1,'Pregunta 2'),(3,1,'Pregunta 3'),(4,1,'Pregunta 4'),(5,4,'¿Qué tan a menudo tomas cursos para seguirte capacitando en tu área de experiencia?\r\n\r\n'),(6,4,'¿Qué tan a menudo tomas cursos para seguirte capacitando en habilidades pedagógicas?\r\n'),(7,4,'¿Qué tan a menudo tomas cursos para seguirte capacitando en habilidades de tecnologías de la información?\r\n\r\n'),(8,4,'Si observas a tus alumnos ¿qué suelen hacer durante tu clase?');
+INSERT INTO `preguntas` VALUES (1,1,'Pregunta 1'),(2,1,'Pregunta 2'),(3,1,'Pregunta 3'),(4,1,'Pregunta 4'),(5,4,'¿Qué tan a menudo tomas cursos para seguirte capacitando en tu área de experiencia?'),(6,4,'¿Qué tan a menudo tomas cursos para seguirte capacitando en habilidades pedagógicas?'),(7,4,'¿Qué tan a menudo tomas cursos para seguirte capacitando en habilidades de tecnologías de la información?'),(8,4,'Si observas a tus alumnos ¿qué suelen hacer durante tu clase?');
 /*!40000 ALTER TABLE `preguntas` ENABLE KEYS */;
 UNLOCK TABLES;
 

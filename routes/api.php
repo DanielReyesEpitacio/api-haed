@@ -19,13 +19,17 @@ use App\Http\Controllers\FeedbackController;
 
 
 Route::get('evaluaciones',[EvaluacionController::class,'index']);
-Route::get('evaluaciones/{id}/all',[EvaluacionController::class,'evaluacion']);
+Route::get('evaluaciones/{id}/all',[EvaluacionController::class,'evaluacionAll']);
+Route::get('evaluaciones/{id}/preguntas',[EvaluacionController::class,'evaluacionWithPreguntas']);
+Route::get('evaluaciones/{id}/preguntas/opciones',[EvaluacionController::class,'evaluacionWithPreguntasOpciones']);
 Route::get('evaluaciones/{id}',[EvaluacionController::class,'show']);
 Route::post('evaluaciones',[EvaluacionController::class,'store']);
 
 Route::get('feedbacks',[FeedbackController::class,'index']);
+
 Route::get('feedbacks/{id}',[FeedbackController::class,'show']);
 Route::get('feedbacks/opcion/{opcionId}',[FeedbackController::class,'getFeedback']); 
+Route::post('feedbacks',[FeedbackController::class,'store']);
 Route::post('feedbacks/opcion/all',[FeedbackController::class,'getFeedbacks']); //Recibe un conjunto de id de opciones {id_opciones:[1,2,3]}
 
 Route::post("auth/register",[AuthController::class,"register"]);

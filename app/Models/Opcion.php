@@ -12,7 +12,7 @@ class Opcion extends Model
     public $timestamps = false;
     public $fillable = [
         'pregunta_id',
-        'descripcion'
+        'opcion'
     ];
 
     public $hidden = [
