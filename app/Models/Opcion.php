@@ -12,18 +12,16 @@ class Opcion extends Model
     public $timestamps = false;
     public $fillable = [
         'pregunta_id',
-        'opcion'
+        'opcion',
+        'feedback'
     ];
 
     public $hidden = [
-        'pregunta_id'
+        
     ];
 
     public function pregunta(){
         return $this->belongsTo(Pregunta::class);
     }
 
-    public function feedback(){
-        return $this->hasOne(Feedback::class);
-    }
 }

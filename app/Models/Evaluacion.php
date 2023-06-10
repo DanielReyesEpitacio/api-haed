@@ -15,4 +15,5 @@ class Evaluacion extends Model
     public function preguntas(){
        return $this->hasMany(Pregunta::class);
     }
+
 }

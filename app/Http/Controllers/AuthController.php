@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Resultado;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
@@ -62,6 +63,21 @@ class AuthController extends Controller
     public function userProfile(){
 
         return response()->json(auth()->user(),Response::HTTP_OK);
+    }
+
+    public function intentosUser(){
+        $loggedUser = User::with("intentos")->find(auth()->user()->id);
+        $userAttemps = $loggedUser->intentos;
+        return response()->json($userAttemps,Response::HTTP_OK);
+    }
+
+    //prueba
+    public function resultadosEvaluacion(){
+        $user_id = 1; // ID del usuario
+        $intento_id = 1; // ID del intento
+
+        
+        return response()->json($resultados);
     }
 
     public function logout(){
