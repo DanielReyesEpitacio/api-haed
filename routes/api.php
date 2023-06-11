@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\IntentoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RespuestaController;
 
 Route::get("evaluaciones",[EvaluacionController::class,'index']);
 Route::get("evaluaciones/{id}/all",[EvaluacionController::class,'evaluacionAll']);
@@ -26,5 +27,7 @@ Route::group(['middleware'=>["auth:sanctum"]],function(){
     Route::get("users/evaluaciones/respuestas/{intentoId}",[UserController::class,"resultadosEvaluacion"]);
 
     Route::post("intentos",[IntentoController::class,"store"]);
+
+    Route::post("respuestas/all",[RespuestaController::class,"storeAnswers"]);
 });
 
