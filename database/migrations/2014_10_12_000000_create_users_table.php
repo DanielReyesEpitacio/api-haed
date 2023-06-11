@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             //$table->unsignedInteger('id')->primary();
             $table->increments('id');
             $table->unsignedInteger('rol_id')->default(1);
-            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate("cascade");
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('matricula')->unique();

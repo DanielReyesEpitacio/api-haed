@@ -37,5 +37,15 @@ class Handler extends ExceptionHandler
         //
     }
 
+    public function render($request, Throwable $exception){
+        if($exception instanceof ModelNotFoundException){
+            return response()->json([
+                "message"=>"Registro no encontrado"
+            ],Response::HTTP_NOT_FOUND);
+        }
+
+        return parent::render($request, $exception);
+    }
+
 
 }

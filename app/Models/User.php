@@ -48,7 +48,4 @@ class User extends Authenticatable
         return $this->hasMany(Intento::class,"user_id");
     }
 
-    public function resultados(){
-        return $this->hasMany(Resultado::class, "user_id");
-    }
 }

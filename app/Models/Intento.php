@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Intento extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = ["user_id","evaluacion_id","uuid"];
-    public $incrementing = false;
+    
     public $timestamps = false;
     public $fillable = [
-        "user_id",
+        "usuario_id",
         "evaluacion_id",
         "fecha"
     ];
@@ -21,14 +19,14 @@ class Intento extends Model
     public $hidden=[];
 
     public function usuario(){
-        return $this->belongsTo(User::class,"user_id");
+        return $this->belongsTo(User::class);
     }
 
     public function evaluacion(){
-        return $this->belongsTo(Evaluacion::class,"evaluacion_id");
+        return $this->belongsTo(Evaluacion::class,);
     }
 
-    public function resultados(){
-        return $this->hasMany(Resultado::class);
+    public function respuestas(){
+        return $this->hasMany(Respuesta::class);
     }
 }

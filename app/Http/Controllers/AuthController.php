@@ -33,6 +33,7 @@ class AuthController extends Controller
             $user
         ],Response::HTTP_CREATED);
     }
+    
     public function login(Request $request){
         $request->validate([
             "email"=>"required|email",
@@ -58,26 +59,6 @@ class AuthController extends Controller
                 "message"=>"Usuario no encontrado"
             ],Response::HTTP_NOT_FOUND);
         }
-    }
-
-    public function userProfile(){
-
-        return response()->json(auth()->user(),Response::HTTP_OK);
-    }
-
-    public function intentosUser(){
-        $loggedUser = User::with("intentos")->find(auth()->user()->id);
-        $userAttemps = $loggedUser->intentos;
-        return response()->json($userAttemps,Response::HTTP_OK);
-    }
-
-    //prueba
-    public function resultadosEvaluacion(){
-        $user_id = 1; // ID del usuario
-        $intento_id = 1; // ID del intento
-
-        
-        return response()->json($resultados);
     }
 
     public function logout(){

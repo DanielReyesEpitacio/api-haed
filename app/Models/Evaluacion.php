@@ -16,4 +16,8 @@ class Evaluacion extends Model
        return $this->hasMany(Pregunta::class);
     }
 
+    public function intentos(){
+        return $this->hasMany(Intento::class);
+    }
+
 }
