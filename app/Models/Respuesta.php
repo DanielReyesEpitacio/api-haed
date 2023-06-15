@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Respuesta extends Model
 {
     use HasFactory;
+
     public $timestamps=false;
     public $fillable=["intento_id","evaluacion_id","opcion_id"];
     public $hidden=[];
