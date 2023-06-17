@@ -52,15 +52,22 @@ class EvaluacionController extends Controller
          
     }
 
+    public function update(Request $request, $id){
 
-    public function update(Request $request, $id)
-    {
-        //
+        $evaluacion=Evaluacion::findOrFail($id);
+        $data=$request->only(["titulo","descripcion"]);
+        $evaluacion->fill($data);
+        $evaluacion->save();
+        return response()->json($evaluacion,Response::HTTP_OK);
+    }
+
+    public function destroy($id){
+        $evaluacion=Evaluacion::findOrFail($id);
+        $evaluacion->delete();
+        return response()->json([
+            "message"=>"Registro eliminado"
+        ],Response::HTTP_OK);
     }
 
 
-    public function destroy($id)
-    {
-        
-    }
 }

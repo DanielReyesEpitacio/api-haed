@@ -29,7 +29,8 @@ class RolController extends Controller
 
     public function show($id)
     {
-        //
+        $rol=Rol::findOrFail($id);
+        return response()->json($rol,Response::HTTP_OK);
     }
 
 

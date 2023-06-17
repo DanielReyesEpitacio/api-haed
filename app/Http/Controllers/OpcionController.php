@@ -6,34 +6,78 @@ use Illuminate\Http\Request;
 use App\Models\Opcion;
 use App\Models\Intento;
 use App\Models\Respuesta;
+use Symfony\Component\HttpFoundation\Response;
 
 class OpcionController extends Controller
 {
     public function index()
     {
-        //
+        return response()->json(Opcion::all(),Response::HTTP_OK);
     }
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "pregunta_id"=>"required|integer|exists:preguntas,id",
+            "opcion"=>"required",
+            "feedback"=>"required"
+        ]);
+
+        $opcion=new Opcion();
+        $opcion->pregunta_id=$request->pregunta_id;
+        $opcion->opcion=$request->opcion;
+        $opcion->feedback=$request->feedback;
+        $opcion->save();
+
+        return response()->json($opcion,Response::HTTP_CREATED);
     }
 
-    public function show($id)
+    public function storeBatch(Request $request)
     {
-        //
+        $request->validate([
+            "opciones" => "required|array", // Cambio en la validación: ahora esperamos un arreglo de preguntas
+            "opciones.*.pregunta_id" => "required|integer|exists:preguntas,id",
+            "preguntas.*.opcion" => "required",
+            "preguntas.*.feedback"=>"required"
+        ]);
+    
+        $opciones = [];
+    
+        foreach ($request->opciones as $opcionData) {
+            $opcion = new Opcion();
+            $opcion->pregunta_id = $opcionData['pregunta_id'];
+            $opcion->opcion = $opcionData['opcion'];
+            $opcion->feedback=$opcionData["feedback"];
+            $opcion->save();
+        
+            $opciones[] = $opcion;
+        }
+    
+        return response()->json($opciones, Response::HTTP_CREATED);
     }
 
+    /*
     public function update(Request $request, $id)
     {
-        //
+        $opcion=Opcion::findOrFail($id);
+        $request->validate([
+            "pregunta_id"=>"integer|exists:preguntas,id"
+        ]);
+        $data=$request->only(["pregunta_id","opcion","feedback"]);
+        $opcion->fill($data);
+        $opcion->save();
+        return response()->json($opcion,Response::HTTP_OK);
     }
 
     public function destroy($id)
     {
-        //
+        $opcion=Opcion::findOrFail($id);
+        $opcion->delete();
+        return response()->json([
+            "message"=>"Registro eliminado"
+        ],Response::HTTP_OK);
     }
-
+    */
     public function getFeedbacks($evaluacion_id,Request $request){
 
         $data = $request->all();
